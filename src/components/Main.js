@@ -15,6 +15,21 @@ export default class Main extends Component {
     });
   }
 
+  handleDelete = (event, index) => {
+    const { tasks } = this.state;
+    const newTasks = [...tasks];
+
+    newTasks.splice(index, 1);
+
+    this.setState({
+      tasks: [
+        ...newTasks
+      ]
+    });
+  }
+  
+  handleEdit = (event, index) => {}
+
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -54,13 +69,13 @@ export default class Main extends Component {
 
         <ul className="tasks">
           {
-            tasks.map((task) => (
+            tasks.map((task, index) => (
               <li key={task}>
                 {task}
 
                 <span>
-                  <FaEdit className="edit" />
-                  <FaWindowClose className="delete" />
+                  <FaEdit onClick={(event) => this.handleEdit(event, index)} className="edit" />
+                  <FaWindowClose onClick={(event) => this.handleDelete(event, index)} className="delete" />
                 </span>
               </li>
             ))
