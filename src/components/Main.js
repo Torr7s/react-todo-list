@@ -28,7 +28,9 @@ export default class Main extends Component {
     });
   }
   
-  handleEdit = (event, index) => {}
+  handleEdit = (event, index) => {
+
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -45,7 +47,8 @@ export default class Main extends Component {
       tasks: [
         ...newTasks,
         newTask
-      ]
+      ],
+      newTask: ''
     });
   }
 
