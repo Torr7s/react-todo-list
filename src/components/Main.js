@@ -1,7 +1,8 @@
 import './Main.css';
 
 import React, { Component } from 'react';
-import { FaPlus, FaEdit, FaWindowClose } from 'react-icons/fa';
+import Form from './Form';
+import { FaEdit, FaWindowClose } from 'react-icons/fa';
 
 export default class Main extends Component {
   state = {
@@ -17,7 +18,7 @@ export default class Main extends Component {
     if (!tasks.length) return;
 
     this.setState({ tasks });
-  };
+  }
 
   /* Callend as soon as a component is updated */
   componentDidUpdate(previousProps, previousState) {
@@ -26,13 +27,13 @@ export default class Main extends Component {
     if (tasks === previousState.tasks) return;
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
-  };
+  }
 
   handleChange = (event) => {
     this.setState({
       newTask: event.target.value
     });
-  };
+  }
 
   handleDelete = (event, index) => {
     const { tasks } = this.state;
@@ -45,7 +46,7 @@ export default class Main extends Component {
         ...newTasks
       ]
     });
-  };
+  }
 
   handleEdit = (event, index) => {
     const { tasks } = this.state;
@@ -54,7 +55,7 @@ export default class Main extends Component {
       index,
       newTask: tasks[index]
     });
-  };
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -92,16 +93,11 @@ export default class Main extends Component {
       <div className="main">
         <h1>Todo List</h1>
 
-        <form action="#" className="form" onSubmit={this.handleSubmit}>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            value={newTask}
-          />
-          <button type="submit">
-            <FaPlus />
-          </button>
-        </form>
+        <Form
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          newTask={newTask}
+        />
 
         <ul className="tasks">
           {
@@ -119,5 +115,5 @@ export default class Main extends Component {
         </ul>
       </div>
     );
-  };
+  }
 }
