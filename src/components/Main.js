@@ -10,6 +10,7 @@ export default class Main extends Component {
     index: -1
   }
 
+  /* Called as soon as a component is mounted */
   componentDidMount() {
     const tasks = JSON.parse(localStorage.getItem('tasks'));
 
@@ -18,6 +19,7 @@ export default class Main extends Component {
     this.setState({ tasks });
   };
 
+  /* Callend as soon as a component is updated */
   componentDidUpdate(previousProps, previousState) {
     const { tasks } = this.state;
 
@@ -30,7 +32,7 @@ export default class Main extends Component {
     this.setState({
       newTask: event.target.value
     });
-  }
+  };
 
   handleDelete = (event, index) => {
     const { tasks } = this.state;
@@ -43,7 +45,7 @@ export default class Main extends Component {
         ...newTasks
       ]
     });
-  }
+  };
 
   handleEdit = (event, index) => {
     const { tasks } = this.state;
@@ -52,7 +54,7 @@ export default class Main extends Component {
       index,
       newTask: tasks[index]
     });
-  }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -117,5 +119,5 @@ export default class Main extends Component {
         </ul>
       </div>
     );
-  }
+  };
 }
